@@ -42,12 +42,12 @@ io.on('connection', () => {
     cpu.usage().then((info)=>{
       io.sockets.emit('uso_cpu', info )
       console.log(info)
-    })
+    }, 1000)
 
     cpu.free().then((info)=>{
       io.sockets.emit('cpu_free', info)
       console.log(info)
-    })
+    }, 1000)
 
     /*drive.info().then((freePercentage,totalGb)=>{
       io.sockets.emit('El espacio libre que hay es: ', freePercentage, ' por ciento')
@@ -59,13 +59,13 @@ io.on('connection', () => {
     memoria.free().then((totalMemMb)=>{
       io.sockets.emit('memoria_free', totalMemMb.freeMemMb)
       console.log(totalMemMb)
-    })
+    }, 1000)
 
     memoria.used().then((usedMemMb)=>{
       io.sockets.emit('memoria_utilizar', usedMemMb , ' MB')
       io.sockets.emit('memoria_utilizar', usedMemMb , ' MB')
       console.log(usedMemMb)
-    })
+    }, 1000)
 
 
 
