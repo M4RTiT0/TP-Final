@@ -42,32 +42,32 @@ io.on('connection', () => {
     cpu.usage().then((info)=>{
       io.sockets.emit('uso_cpu', info )
       console.log(info)
-    }, 1000)
+    })
 
     cpu.free().then((info)=>{
       io.sockets.emit('cpu_free', info)
       console.log(info)
-    }, 1000)
+    })
 
     /* drive.info().then((info) => {
       io.sockets.emit('freePercentage', info)
       console.log(info)
-    }, 1000)
+    })
 
     drive.info().then((info)=> {
       io.sockets.emit('freeGb',info)
       console.log(info)
-    }, 1000) */
+    }) */
 
     memoria.free().then((totalMemMb)=>{
       io.sockets.emit('memoria_free', totalMemMb.freeMemMb)
       console.log(totalMemMb)
-    }, 1000)
+    })
 
     memoria.used().then((usedMemMb)=>{
       io.sockets.emit('memoria_usada', usedMemMb , ' MB')
       console.log(usedMemMb)
-    }, 1000)
+    })
 
   },1000)
 })
