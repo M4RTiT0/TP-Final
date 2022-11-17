@@ -4,7 +4,7 @@ const enrutador = express.Router();
 
 const pool = require('../database')
 
-enrutador.get('/clientes', async (req,res) => {
+enrutador.get('/cliente', async (req,res) => {
 
     const db = await pool.obtenerConexion()
     //vamos a realizar una consulta a la base. Es decir, una query.
@@ -13,16 +13,6 @@ enrutador.get('/clientes', async (req,res) => {
     res.json(rows)
 })
 
-enrutador.post('/Cliente', async (req,res) => {
-    const unCliente = req.body;
-    await db.query('insert into cliente set ?', [unCliente], (err,result) => {
-        if(err) {
-            return console.log('Algo Malio Sal :(')
-        } else {
-            res.json("El cliente se guardo Exitosamente!")
-        }
-    })
-})
 
 enrutador.post('/cliente', async (req,res) => {
 
