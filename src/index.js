@@ -49,8 +49,8 @@ io.on('connection', () => {
       console.log(info)
     })
 
-    /*cpu.free().then((info)=>{
-      io.sockets.emit('cpu_free', info)
+    /*cpu.model().then((info)=>{
+      io.sockets.emit('modelo_cpu', info)
       console.log(info)
     })*/
 
