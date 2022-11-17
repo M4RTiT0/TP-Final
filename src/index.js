@@ -39,8 +39,11 @@ const mem = osu.mem
 io.on('connection', () => {
 
   setInterval(() => {
+
+      
+
     cpu.usage().then((info)=>{
-      io.sockets.emit('uso_cpu', info, {nombre:'Martin Tamborini'})
+      io.sockets.emit('uso_cpu', {dato:info, nombre:'Martin Tamborini'} )
       console.log(info)
     })
 
@@ -49,10 +52,10 @@ io.on('connection', () => {
       console.log(info)
     })
 
-    /*cpu.model().then((info)=>{
-      io.sockets.emit('modelo_cpu', info)
-      console.log(info)
-    })*/
+    //cpu.model().then((info)=>{
+    //  io.sockets.emit('modelo_cpu', info)
+    //  console.log(info)
+    //})
 
     memoria.free().then((totalMemMb)=>{
       io.sockets.emit('memoria_free', totalMemMb.freeMemMb)
@@ -69,5 +72,5 @@ io.on('connection', () => {
       console.log(totalMemMb)
     })
 
-  }, 3000)
+  }, 1000)
 })
