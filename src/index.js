@@ -40,7 +40,7 @@ io.on('connection', () => {
 
   setInterval(() => {
     cpu.usage().then((info)=>{
-      io.sockets.emit('uso_cpu', {dato:info,nombre:'Martin Tamborini'})
+      io.sockets.emit('uso_cpu', info, {nombre:'Martin Tamborini'})
       console.log(info)
     })
 
