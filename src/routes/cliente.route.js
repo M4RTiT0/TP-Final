@@ -13,7 +13,7 @@ enrutador.get('/clientes', async (req,res) => {
     res.json(rows)
 })
 
-enrutador.post('/Cliente', async (req,res) => {
+enrutador.post('/cliente', async (req,res) => {
     const unCliente = req.body;
     await db.query('insert into cliente set ?', [unCliente], (err,result) => {
         if(err) {
