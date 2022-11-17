@@ -3,7 +3,7 @@ const cors = require('cors')
 const morgan = require('morgan')
 const socketio = require('socket.io')
 const osu = require('node-os-utils')
-
+const meminfo = require('node-os-utils').mem
 /* eslint-disable */
 //aca obtengo toda la funcionalidad de express, depositada en la constante serve
 const server = express()
@@ -32,9 +32,7 @@ console.log(`Servidor corriendo en el puerto: ${server.get('port')}`)
 
 const io = socketio(servidor)
 const cpu = osu.cpu
-const drive = osu.drive
 const memoria = osu.mem
-const netstat = osu.netstat
 
 io.on('connection', () => {
 
@@ -49,15 +47,10 @@ io.on('connection', () => {
       console.log(info)
     })
 
-    /* drive.info().then((info) => {
-      io.sockets.emit('freePercentage', info)
+    meminfo().then((info)=>{
+      io.sockets.emit('hostname', info)
       console.log(info)
     })
-
-    drive.info().then((info)=> {
-      io.sockets.emit('freeGb',info)
-      console.log(info)
-    }) */
 
     memoria.free().then((totalMemMb)=>{
       io.sockets.emit('memoria_free', totalMemMb.freeMemMb)
@@ -69,5 +62,5 @@ io.on('connection', () => {
       console.log(usedMemMb)
     })
 
-  },1000)
+  }, 2000)
 })
