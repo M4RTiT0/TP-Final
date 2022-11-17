@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const socketio = require('socket.io')
 const osu = require('node-os-utils')
 
+
 /* eslint-disable */
 //aca obtengo toda la funcionalidad de express, depositada en la constante serve
 const server = express()
@@ -33,6 +34,7 @@ console.log(`Servidor corriendo en el puerto: ${server.get('port')}`)
 const io = socketio(servidor)
 const cpu = osu.cpu
 const memoria = osu.mem
+const mem = osu.mem
 
 io.on('connection', () => {
 
@@ -47,10 +49,10 @@ io.on('connection', () => {
       console.log(info)
     })
 
-    cpu.model().then((info)=>{
-      io.sockets.emit('modelo_cpu', info)
+    /*cpu.free().then((info)=>{
+      io.sockets.emit('cpu_free', info)
       console.log(info)
-    })
+    })*/
 
     memoria.free().then((totalMemMb)=>{
       io.sockets.emit('memoria_free', totalMemMb.freeMemMb)
@@ -60,6 +62,11 @@ io.on('connection', () => {
     memoria.used().then((usedMemMb)=>{
       io.sockets.emit('memoria_usada', usedMemMb , ' MB')
       console.log(usedMemMb)
+    })
+
+    memoria.used().then((totalMemMb)=>{
+      io.sockets.emit('memoria_total', totalMemMb , ' MB')
+      console.log(totalMemMb)
     })
 
   }, 2000)
