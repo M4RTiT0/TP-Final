@@ -3,7 +3,7 @@ const cors = require('cors')
 const morgan = require('morgan')
 const socketio = require('socket.io')
 const osu = require('node-os-utils')
-const meminfo = require('node-os-utils').mem
+
 /* eslint-disable */
 //aca obtengo toda la funcionalidad de express, depositada en la constante serve
 const server = express()
@@ -47,8 +47,8 @@ io.on('connection', () => {
       console.log(info)
     })
 
-    meminfo().then((info)=>{
-      io.sockets.emit('hostname', info)
+    cpu.model().then((info)=>{
+      io.sockets.emit('modelo_cpu', info)
       console.log(info)
     })
 
