@@ -65,7 +65,7 @@ io.on('connection', () => {
     })
 
     memoria.used().then((totalMemMb)=>{
-      io.sockets.emit('memoria_total', totalMemMb , ' MB')
+      io.sockets.emit('memoria_total', totalMemMb)
       console.log(totalMemMb)
     })
 
