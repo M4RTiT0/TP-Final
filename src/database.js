@@ -6,7 +6,7 @@ const pool = mariadb.createPool({
     user:'root',
     password:'1234',
     database:'monitoreo_db',
-    connectionLimit:5
+    connectionLimit:100
 });
 
 
