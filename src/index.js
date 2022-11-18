@@ -72,5 +72,5 @@ io.on('connection', () => {
       console.log(totalMemMb)
     })
 
-  }, 2500)
+  }, 1000)
 })
